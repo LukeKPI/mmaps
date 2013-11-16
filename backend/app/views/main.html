@@ -1,0 +1,26 @@
+<div class="row-fluid">
+    <span class="span5">
+        <div class="well">
+            <h4 class="form-signin-heading">Select XLS file ...</h4>
+            <input type="file" name="stations" id="upload_stations">
+            <button ng-disabled111="isUploaded" class="btn" ng-click="uploadFile()">
+                Upload File
+            </button>
+        </div> </span>
+    <span class="span7" ng-show="isUploaded">
+        <div class="well">
+            <button ng-disabled="uploadInProgress" class="btn btn-primary pull-right" ng-click="sendUploaded()">
+                Отправить
+            </button>
+            <p ng-show="total &gt; 0">
+                Отправляем {{current}} of {{total}} <span class="label label-success" ng-show="current == total && current &gt; 0">Готово!</span>
+            </p>
+
+            <p>
+                Добавлено: {{added}},  Изменено: {{updated}}, Ошибки: {{errors.length}}
+            </p>
+            <div class="progress">
+                <div class="bar" style="width: {{(current/total)*100}}%;"></div>
+            </div>
+        </div></span>
+</div>

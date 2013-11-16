@@ -1,0 +1,17 @@
+android/ATTR_MINIFY=true
+android/ATTR_PROJECT_NAME=Avias
+android/abi=armeabi-v7a
+android/distribute_path=/Users/admin/Documents/Avias/Output/Android
+android/keystore_alias=avias
+android/keystore_password=avias2013
+android/keystore_path=/Users/admin/Documents/Avias/Output/Android/keystore
+android/recent_output=/Users/admin/Documents/Avias/Output/Android
+android/sdk_version=Android 4.1.2
+eclipse.preferences.version=1
+iosLaunchConfigurationAttributes/ATTR_MINIFY=true
+iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=Avias
+iosLaunchConfigurationAttributes/appid=ua.com.avias.app
+iosLaunchConfigurationAttributes/certificate=Avias, TOV VTF (9JDKAS2C5E)
+iosLaunchConfigurationAttributes/keychain=
+iosLaunchConfigurationAttributes/sdk_version=6.1
+iosLaunchConfigurationAttributes/uuid=212FD7C2-C97C-46FA-803B-807E9842C1F0

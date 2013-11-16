@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <deployment-targets>
+        <target device="tizen">false</target>
+        <target device="mobileweb">false</target>
+        <target device="iphone">true</target>
+        <target device="ipad">true</target>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+    </deployment-targets>
+    <sdk-version>3.1.1.GA</sdk-version>
+    <id>ua.com.avias.app</id>
+    <name>Avias</name>
+    <version>1.0</version>
+    <publisher>vova</publisher>
+    <url>http://</url>
+    <description>not specified</description>
+    <copyright>2012 by vova</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>false</analytics>
+    <guid>ccd7bc19-c41c-47f7-bd77-4c9755059b0a</guid>
+    <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
+    <property name="ti.ui.defaultunit" type="string">dip</property>
+    <property name="ti.android.fastdev" type="bool">false</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+        </orientations>
+    </iphone>
+    <android android:installLocation="auto" xmlns:android="http://schemas.android.com/apk/res/android">
+        <tool-api-level>16</tool-api-level>
+        <manifest android:versionCode="4" android:versionName="1.3">
+            <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+            <uses-feature android:name="android.hardware.location" android:required="false"/>
+            <uses-feature
+                android:name="android.hardware.location.network" android:required="false"/>
+            <uses-feature android:name="android.hardware.wifi" android:required="false"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+            <supports-screens android:anyDensity="true"
+                android:largeScreens="true" android:normalScreens="true"
+                android:smallScreens="true" android:xlargeScreens="true"/>
+            <application android:hardwareAccelerated="true">
+                <meta-data
+                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyClmS-LpYn7hAZd_ZT1fF4UAWTm2GtU3AY"/>
+                <activity
+                    android:configChanges="keyboardHidden|orientation"
+                    android:name=".AviasActivity"
+                    android:screenOrientation="sensorPortrait" android:theme="@style/MyTheme">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN"/>
+                        <category android:name="android.intent.category.LAUNCHER"/>
+                    </intent-filter>
+                </activity>
+                <activity
+                    android:configChanges="keyboardHidden|orientation"
+                    android:label=""
+                    android:name="ti.modules.titanium.media.TiVideoActivity" android:screenOrientation="sensorPortrait"/>
+                <activity
+                    android:configChanges="keyboardHidden|orientation"
+                    android:name="org.appcelerator.titanium.TiActivity"
+                    android:screenOrientation="sensorPortrait" android:theme="@style/MyThemeNoBg"/>
+                <activity
+                    android:configChanges="keyboardHidden|orientation"
+                    android:name="org.appcelerator.titanium.TiTranslucentActivity" android:screenOrientation="sensorPortrait"/>
+                <activity
+                    android:configChanges="keyboardHidden|orientation"
+                    android:name="org.appcelerator.titanium.TiModalActivity" android:screenOrientation="sensorPortrait"/>
+                <activity
+                    android:name="ti.modules.titanium.ui.android.TiPreferencesActivity" android:screenOrientation="sensorPortrait"/>
+                <service android:exported="false"
+                    android:name="org.appcelerator.titanium.analytics.TiAnalyticsService" android:screenOrientation="sensorPortrait"/>
+                <activity android:configChanges="orientation"
+                    android:name="com.keyes.youtube.OpenYouTubePlayerActivity" android:screenOrientation="sensorPortrait"/>
+            </application>
+        </manifest>
+        <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="16"/>
+    </android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules/>
+    <property name="ti.android.google.map.api.key.development">0i-eVKAgkKFNyqD1d5ledAlCqvYCCQqdNhOlEtA</property>
+    <property name="ti.android.google.map.api.key.production">0i-eVKAgkKFOykDuKKuWBuljNrTCa56RWLNnkEg</property>
+</ti:app>

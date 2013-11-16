@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="@android:style/Theme.Holo.Light.NoActionBar">
+         <item name="android:windowBackground">@drawable/background</item>
+         <item name="android:tabWidgetStyle">@style/Widget.TabWidget</item>
+    </style>
+    <style name="MyThemeNoBg" parent="@android:style/Theme.Holo.Light.NoActionBar">
+    </style>
+   	 <style name="Widget.TabWidget" parent="android:Theme"> 
+	      <item name="android:tabStripEnabled">false</item>
+	 </style>      
+    
+</resources>

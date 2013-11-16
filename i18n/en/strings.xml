@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="choose">Выбор</string>
+    <string name="done">Готово</string>
+    <string name="back">Назад</string>
+    <string name="save">Сохранить</string>
+    <string name="select">Выбрать</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="cancel">Отменить</string>
+    <string name="loading">Загрузка</string>
+    <string name="saved">Сохранено</string>
+    <string name="cleared">Очищено</string>
+    <string name="clear">Очиcтить</string>
+    <string name="no_history">Нет сохраненных данных</string>
+    <string name="way">Маршрут</string>
+    <string name="text">Текст</string>
+    <string name="connection_problem">Подключение к интернету отсутствует</string>
+    <string name="no_data">Маршрут не построен</string>
+    <string name="can_not_get_route">Не удалось построить маршрут</string>
+    
+    <string name="mi_azs">Сеть АЗС</string>
+    <string name="mi_azs_hint">Крупнейшая сеть в Украине</string>
+    
+    <string name="mi_kart">Топливные карты</string>
+    <string name="mi_kart_tab">Топливные карты</string>
+    <string name="mi_kart_hint">Экономия, удобство и безопасность</string>
+    
+    <string name="mi_opt">Оптовые продавцы</string>
+    <string name="mi_opt_tab">Опт</string>
+    <string name="mi_opt_hint">Оптовым покупателям</string>
+    
+    <string name="mi_rashod">Расчет расхода</string>
+    <string name="mi_rashod_hint">Не верь рекламе считай сам</string>
+    
+
+    <string name="nearest_title">Сеть АЗС</string>
+    <string name="nearest">Ближайшая АЗС</string>
+    <string name="nearest_mi_map">Карта</string>
+    <string name="nearest_mi_list">Список</string>
+    <string name="nearest_mi_gas">Выбор\nтоплива</string>
+    <string name="nearest_select_all">Выделить все</string>
+    <string name="nearest_select_none">Сбросить все</string>
+    
+
+    <string name="list_map">Карта</string>
+    <string name="list_list">Список</string>
+    <string name="list_dist">Расстояние</string>
+    <string name="list_regions">Регионы</string>
+    <string name="list_map_title">Карта АЗС</string>
+    <string name="list_map_kart_title">Точки продажи</string>
+    <string name="list_map_opt_title">Оптовые продавцы</string>
+    
+
+    <string name="kart_list_title">Точки продажи</string>
+    
+
+    <string name="kart_pass_title">Точка продажу</string>
+    <string name="kart_pass_price">Цены (скретч и топливные карты)</string>
+    <string name="kart_pass_regions">Цены "Регион"</string>
+    <string name="kart_pass_ukraine">Цены "Украина"</string>
+    
+
+    <string name="opt_list_title">Оптовые продавцы</string>
+    
+
+    <string name="opt_pass_title">Паспорт оптовика</string>
+    
+    
+    <string name="rozrah_menu_title">Расход</string>
+    <string name="rozrah_menu_city">ср. по городу</string>
+    <string name="rozrah_menu_highway">ср. по трассе</string>
+    <string name="rozrah_menu_mix">ср. смешанный</string>
+    <string name="rozrah_menu_last">Последний расчет</string>
+    <string name="rozrah_menu_history">История</string>
+    <string name="rozrah_menu_calc">Рассчитать</string>
+    
+    
+    <string name="rozrah_calc_title">Расчет</string>
+    <string name="rozrah_calc_litr">Литр (л)</string>
+    <string name="rozrah_calc_mileage">Показания одометра (км)</string>
+    <string name="rozrah_calc_consumption">Расход:</string>
+    <string name="rozrah_calc_fuel">Бензин</string>
+    <string name="rozrah_calc_type">Тип пробега</string>
+    <string name="rozrah_calc_city">Город</string>
+    <string name="rozrah_calc_highway">Трасса</string>
+    <string name="rozrah_calc_mix">Mix</string>
+    <string name="rozrah_calc_wrong_data">Выберите правильные данные полей для расчета</string>
+    
+
+    <string name="rozrah_history_title">История</string>
+    
+
+    <string name="rozrah_gas_title">Топлива</string>
+    
+    
+    <string name="error_disable_geo">Пожалуйста, включите поддержку служб определения местоположения</string>
+    <string name="error">Ошибка</string>
+    
+    <string name="check_updates">Проверить обновления</string>
+    <string name="update_all">Обновить все</string>
+    <string name="version">Версия</string>
+    <string name="last_update">Обновлено</string>
+    <string name="no_changes">Изменений нет</string>
+    <string name="updated">Обновление завершено успешно</string>
+    <string name="azs">Сеть АЗС</string>
+    <string name="nearest_azs">Ближайшая АЗС</string>
+    <string name="no_phone">Телефон не указан</string>
+    <string name="phone">Желаете позвонить?</string>
+    
+    <string name="fuels">Топлива</string>
+    <string name="stat2_header">Заправки</string>
+    <string name="stat_header">Статистика</string>
+    <string name="select_header">Ввод данных</string>
+    <string name="refuel_date">Дата заправки</string>
+    
+    <string name="select_date">Дата:</string>
+    <string name="enter_odometr">Одометр (км):</string>
+    <string name="enter_liters">Заправлено(л):</string>
+    <string name="fuel_price">Цена(за литр):</string>
+    <string name="enter_total">Уплачено(грн):</string>
+    <string name="select_fuel">Топливо:</string>
+    <string name="is_full">Полный бак?</string>
+    
+    <string name="statistic">Cтатистика</string>
+    <string name="zapravki">Заправки</string>
+    
+    
+    <string name="rashod_delete">Вы уверены, что хотите удалить все записи?</string>
+    <string name="rashod_example">Загрузить выдуманные данные для примера работы учета статистики?</string>
+    <string name="delete">Удаление</string>
+        
+    <string name="hint_odometr">Показатель одометра полный</string>
+    <string name="hint_total">Уплачено</string>
+    <string name="hint_bulk">Объем залитого топлива</string>
+    
+    <string name="rashod_info">Информация</string>
+    
+    <string name="err_greater_date">Указаная дата еще не наступила</string>
+    <string name="err_null_or_greater">Значение не указано или слишком большое</string>
+    <string name="err_signs">Поле содержит недопустимые символы</string>
+    <string name="err_odometr">Поле содержит меньшее значение одометра, чем в предыдущей записи (нужно указывать значение полного одометра). Предыдущая запись </string>
+    <string name="err_next_odom">Поле содержит большее значение одометра, чем в предыдущей записи (нужно указывать значение полного одометра). Следующая запись </string>
+    <string name="err_prev_odom">Поле содержит меньшее значение одометра, чем в предыдущей записи (нужно указывать значение полного одометра). Предыдущая запись </string>
+    
+    <string name="close_confirm">Закрыть приложение?</string>
+    <string name="route_confirm">Проложить маршрут в эту точку?</string>
+    <string name="attention">Внимание</string>
+    <string name="all">Все</string>
+</resources>

@@ -1,0 +1,28 @@
+<div id="modalEdit<%= _.classify(name) %>Form" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="Edit<%= _.classify(name) %>Ctrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+        </button>
+        <h3 id="myModalLabel"><%= title %></h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="<%= _.camelize(name) %>Form">
+<% for (var i in fields) { %>
+            <div class="control-group">
+                <label class="control-label" for="input<%= _.classify(fields[i]) %>"><%= labels[i] %></label>
+                <div class="controls">
+                    <input type="text" id="input<%= _.classify(fields[i]) %>" placeholder="<%= labels[i] %>" ng-model="edited.<%= fields[i] %>">
+                </div>
+            </div>
+<% } %>    
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            Close
+        </button>
+        <button class="btn btn-primary" ng-click="saveChanges()" ng-disabled>
+            Save changes
+        </button>
+    </div>
+</div>

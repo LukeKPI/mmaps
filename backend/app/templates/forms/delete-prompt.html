@@ -1,0 +1,17 @@
+<div id="modalDeleteConfirmForm" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>Удалить???</h3>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-error" ng-show="deleteError">
+            {{deleteError}}
+        </div>
+        <p>Вы серьезно уверены что эту запись можно и нужно удалять?</p>
+        <p>Нажмите "Удалить" для продолжения...</p>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="deleteConfirmed()" class="btn btn-danger">Удалить</a>
+        <a href="javascript:$('#modalDeleteConfirmForm').modal('hide')" class="btn secondary">Отмена</a>
+    </div>
+</div>

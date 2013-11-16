@@ -1,0 +1,42 @@
+[
+    {
+    	"id" : 1,
+        "date": "2013-02-01",
+        "fuel": "А-95 ENERGY",
+        "isFull": 1,
+        "liters": 10,
+        "odometr": 200000,
+        "price": 10.3,
+        "total": 103
+    },
+    {
+    	"id" : 2,
+        "date": "2013-02-10",
+        "fuel": "А-95 ENERGY",
+        "isFull": 0,
+        "liters": 40,
+        "odometr": 200388,
+        "price": 10.8,
+        "total": 432
+    },
+    {
+    	"id" : 3,
+        "date": "2013-02-11",
+        "fuel": "А-95 ENERGY",
+        "isFull": 1,
+        "liters": 20,
+        "odometr": 200850,
+        "price": 10.8,
+        "total": 216
+    },
+    {
+    	"id" : 4,
+        "date": "2013-02-13",
+        "fuel": "А-95 ENERGY",
+        "isFull": 1,
+        "liters": 8,
+        "odometr": 200950,
+        "price": 10.8,
+        "total": 86.4
+    }
+]

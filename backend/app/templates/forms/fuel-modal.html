@@ -1,0 +1,54 @@
+<div id="modalEditFuelForm" name="modalEditFuelForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="EditFuelCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+        </button>
+        <h3 id="myModalLabel">Горючее</h3>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-error" ng-show="formError">
+            {{formError}}
+        </div>
+        <form class="form-horizontal" name="fuelForm">
+
+            <div class="control-group">
+                <label class="control-label" for="inputCode">Код</label>
+                <div class="controls">
+                    <input type="text" id="inputCode" placeholder="Код" ng-model="edited.code" required>
+                </div>
+            </div>
+
+            <div class="control-group" ng-class="fieldState('name')">
+                <label class="control-label" for="inputName">Название</label>
+                <div class="controls">
+                    <input type="text" id="inputName" placeholder="Название" ng-model="edited.name" required>
+                </div>
+            </div>
+
+            <div class="control-group" ng-class="fieldState('sort_order')">
+                <label class="control-label" for="inputSortOrder">Сортировка</label>
+                <div class="controls">
+                    <input type="text" id="inputSortOrder" placeholder="Сортировка" ng-model="edited.sort_order" required>
+                    <span class="help-inline" ng-show="formErrorFields['sort_order']">{{formErrorFields['sort_order']}}</span>
+                </div>
+            </div>
+
+            <div class="control-group" ng-class="fieldState('color')">
+                <label class="control-label" for="inputColor">Цвет</label>
+                <div class="controls">
+                    <input type="text" id="inputColor" placeholder="Цвет" ng-model="edited.color" required>
+                    <span class="help-inline" ng-show="formErrorFields['color']">{{formErrorFields['color']}}</span>
+                </div>
+            </div>
+    
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            Close
+        </button>
+        <button class="btn btn-primary" ng-click="saveChanges()">
+            Save changes
+        </button>
+    </div>
+</div>
