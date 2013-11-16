@@ -215,8 +215,8 @@ function ListWindow(options) {
     //BUTTON BARS
 
     var bottomBar = new UI.WindowFooter({
-        button_bar : [L('list_dist'), L('list_regions')],
-        right_button: true,
+        button_bar : (options.test_id != 1) ?[L('list_dist'), L('list_regions')] :null,
+        right_button: (options.test_id != 1) ?true : false,
     });
     bottomBar.addEventListener('rightBtnTap', function(e) {
         if (!Ti.Geolocation.locationServicesEnabled) {
@@ -336,7 +336,7 @@ function ListWindow(options) {
 
         container.add(bottomBar);
         header.listMapIndex(0);
-        bottomBar.buttonBarIndex(0);
+        (options.test_id != 1) ?bottomBar.buttonBarIndex(0) :null;
         bbIndex = 0;
         
     }
@@ -354,7 +354,7 @@ function ListWindow(options) {
 
         UI.replaceView(container, regionsWindow, false, bottomBar, back);
         header.listMapIndex(0);
-        bottomBar.buttonBarIndex(1);
+        (options.test_id != 1) ?bottomBar.buttonBarIndex(1) :null;
         bbIndex = 1;
 
     }
@@ -376,7 +376,7 @@ function ListWindow(options) {
         areasWindow.addData(selectedRegion);
         UI.replaceView(container, areasWindow, false, bottomBar, back);
         header.listMapIndex(0);
-        bottomBar.buttonBarIndex(1);
+        (options.test_id != 1) ?bottomBar.buttonBarIndex(1):null;
         bbIndex = 1;
     }
     
@@ -466,6 +466,7 @@ function ListWindow(options) {
         table.setSections([Ti.UI.createListSection({items:[{template: "loading"}]})]);
         
         var params = {};
+        params.test_id = options.test_id
         if (selectedFuel) {
             params.fuels = selectedFuel;
         }

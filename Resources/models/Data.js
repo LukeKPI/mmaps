@@ -111,6 +111,17 @@ module.exports = {
                         });
                     }
                 }
+                
+                //filter data
+                Ti.API.info('TEST_ID', params.test_id)
+                if (params.test_id == 1) {
+	                var maxNumberOfData = 30;
+	                var counter = 1;
+	                result = _.filter(result, function(station, iterator) {
+	                    return (station.region_id == 9);
+	                });
+                }
+                
                 var list = _.sortBy(result, "distance");
                 Ti.API.info('CALC IN ' + (new Date().getTime() - time));
                 return list;

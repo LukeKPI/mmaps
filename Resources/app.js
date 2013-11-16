@@ -198,7 +198,8 @@
         listAZSWIndow = new ListWindow({
             fuels : e.fuels,
             refresh : e.refresh,
-            station : e.station
+            station : e.station,
+            test_id : e.test_id
         });
         listAZSWIndow.navGroup = azsTab;
         openWindow(listAZSWIndow);
