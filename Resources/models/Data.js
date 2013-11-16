@@ -45,11 +45,12 @@ module.exports = {
                 var found_stations =_.filter(full_data.stations, function(station, index, array) {
                     return station && station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
                 });
+                
                 if (found_stations.length < limit) return found_stations;
                 if (e.longitudeDelta < 3.8) {
                     var region = _.filter(full_data.areas, function(station, index, array) {
                         array[index].cluster = true;
-                        return station && station.stations > 0 &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
+                        return false && station && station.stations > 0 &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
                     });
                     var result = _.map(region, function(r, index) {
                         if (r.stations == 1) {
@@ -68,7 +69,7 @@ module.exports = {
                 
                 var region = _.filter(full_data.regions, function(station, index, array) {
                     array[index].cluster = true;
-                    return station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
+                    return false && station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
                 });
                 return region;
             },
@@ -113,7 +114,7 @@ module.exports = {
                 }
                 
                 //filter data
-                Ti.API.info('TEST_ID', params.test_id)
+                Ti.API.info('TEST_ID')
                 if (params.test_id == 1) {
 	                var maxNumberOfData = 30;
 	                var counter = 1;
