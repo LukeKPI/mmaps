@@ -8,13 +8,13 @@ var android = (Ti.Platform.osname == 'android') ? 1 : 0;
 if (android) {
     //var tm = require('ti.map');
     //Ti.App.GoogleMapsApiV2 = tm.isGoogleMapsInstalled();
-    //Ti.API.info(Ti.App.GoogleMapsApiV2);
+    ////Ti.API.info(Ti.App.GoogleMapsApiV2);
 }
 Ti.App.GoogleMapsApiV2 = false;
 Ti.Map = (android && Ti.App.GoogleMapsApiV2 ? require('ti.map') : Ti.Map);
 if (android) {
     Ti.API.timestamp = function(e){
-        Ti.API.info(new Date().getTime() + " " + e);
+        //Ti.API.info(new Date().getTime() + " " + e);
     }
 }
 
@@ -83,10 +83,10 @@ function MapView(props) {
     if (props.annotations) {
         o.annotations = props.annotations;
     }
-    Ti.API.info(JSON.stringify(o));
+    //Ti.API.info(JSON.stringify(o));
     var mapview = Ti.Map.createView(o);
     o = null;
-    Ti.API.info('CREAATED ' + Ti.App.GoogleMapsApiV2);
+    //Ti.API.info('CREAATED ' + Ti.App.GoogleMapsApiV2);
     
     var routeAnnotation;
     function linkFunction(e) {
@@ -150,10 +150,10 @@ function MapView(props) {
         var key = parseFloat(item.lat).toFixed(5) + "_" +parseFloat(item.lon).toFixed(5) +"_"+(item.cluster?0:1)+"_"+(item.cluster ? item.stations : '');
         if (!isStatic) {
             currStationId = item.id;
-            //Ti.API.info(key);
+            ////Ti.API.info(key);
             var found = ACACHE[key];
             if (found) {
-                //Ti.API.info('FOUND ' + key);
+                ////Ti.API.info('FOUND ' + key);
                 delete keysToDelete[key];
                 //found.isAnnotation = true;
                 return found;
@@ -180,7 +180,7 @@ function MapView(props) {
         } else {
             aimage = android ? '/images/map/pin_a.png' : '/images/map/pin.png';
         }
-        Ti.API.info(aimage);
+        //Ti.API.info(aimage);
         var opt = {
             latitude : item.lat,
             longitude : item.lon,
@@ -257,14 +257,14 @@ function MapView(props) {
     var loadingTimer;
     var lastRegion = mapview.region;
     function reloadAnnotationsOnChange(e) {
-        Ti.API.info(JSON.stringify(e));
+        ////Ti.API.info(JSON.stringify(e));
         lastRegion = {
                 latitude : e.latitude,
                 longitude : e.longitude,
                 latitudeDelta : e.latitudeDelta,
                 longitudeDelta : e.longitudeDelta,
         };
-        //Ti.API.info()
+        ////Ti.API.info()
         if (isStatic) return;
         if (loading) return;
         //mapview.removeEventListener("regionChanged", reloadAnnotationsOnChange)
@@ -275,7 +275,7 @@ function MapView(props) {
         loadingTimer = setTimeout(function(){
             loading = true;
             reloadAnnotations(lastRegion);
-            Ti.API.info()
+            ////Ti.API.info()
             loading = false;
         }, 1000);
         //mapview.addEventListener("regionChanged", reloadAnnotationsOnChange)
@@ -303,14 +303,14 @@ function MapView(props) {
         mapview.removeEventListener('click', linkFunction);
         mapview.removeEventListener("regionchanged", reloadAnnotationsOnChange);
         if (station) {
-            Ti.API.info('SET REGION')
+            ////Ti.API.info('SET REGION')
             mapview.setRegion({
                 latitude : station.lat,
                 longitude : station.lon,
                 latitudeDelta : 0.05,
                 longitudeDelta : 0.07,
             });
-            Ti.API.info('RELOAD ANN');
+            ////Ti.API.info('RELOAD ANN');
             keepAnnotationId = station.id;
             reloadAnnotations({
                 latitude : parseFloat(station.lat),
@@ -363,13 +363,13 @@ function MapView(props) {
                 UI.AlertDialog(L('error_disable_geo'));
                 return;
             } else {
-                Ti.API.info('GEO success');
+                //Ti.API.info('GEO success');
                 var currPos = {
                     lat : geo.coords.latitude,
                     lon : geo.coords.longitude
                 }
             }
-            //Ti.API.info('BEW COORDS - ' + geo.coords.latitude + '/' + geo.coords.longitude);
+            ////Ti.API.info('BEW COORDS - ' + geo.coords.latitude + '/' + geo.coords.longitude);
             Ti.App.Properties.setString('currPosition', JSON.stringify(currPos));
             Ti.App.currPosition = currPos;
 
@@ -390,7 +390,7 @@ function MapView(props) {
     self.routeReady = function(e, mapview, currPos, destination) {
         //ROUTE
 
-        //Ti.API.info('RouteReady')
+        ////Ti.API.info('RouteReady')
         if (e.error) {
             UI.AlertDialog(e.error);
             currRoute = {
@@ -408,9 +408,9 @@ function MapView(props) {
         
         currRoute = android && Ti.App.GoogleMapsApiV2 ? Ti.Map.createRoute(currRoute) : currRoute;
         mapview.addRoute(currRoute);
-        Ti.API.info(currPos, destination);
+        //Ti.API.info(currPos, destination);
         var middlePoint = getMiddlePoint(currPos.lat, currPos.lon, destination.latitude, destination.longitude);
-        Ti.API.info(middlePoint);
+        //Ti.API.info(middlePoint);
         mapview.setRegion({
             latitude : middlePoint.lat,
             longitude : middlePoint.lng,
@@ -494,11 +494,11 @@ function MapView(props) {
         mapview.removeEventListener('click', linkFunction);
         mapview.removeEventListener("regionChanged", reloadAnnotationsOnChange);
         mapview.removeAllAnnotations();
-        Ti.API.info('CLEAN MAPVIEW');
+        //Ti.API.info('CLEAN MAPVIEW');
 
         mapview.clean();
         return;
-        Ti.API.info('REMOVE MAP VIEW');
+        //Ti.API.info('REMOVE MAP VIEW');
         self.activeAnnotation = null;
         self.drawRoute = null;
         self.setRegion = null;
@@ -506,7 +506,7 @@ function MapView(props) {
         self.routeReady = null;
         holder.remove(mapview);
         mapview = null;
-        Ti.API.info('NULL MAP VIEW');
+        //Ti.API.info('NULL MAP VIEW');
         self.removeAllChildren();
         props = null;
     } 
@@ -517,7 +517,7 @@ function MapView(props) {
     var calculateLatLngfromPixels = function(mapview, xPixels, yPixels) {
     
         var region = lastRegion || mapview.region;
-        Ti.API.info(region);
+        //Ti.API.info(region);
         var widthInPixels = mapview.rect.width;
         var heightInPixels = mapview.rect.height;
     

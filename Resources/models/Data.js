@@ -36,16 +36,26 @@ module.exports = {
         station : {
             getListInRect : function(e) {
                 //Ti.API.timestamp('S1');
-                Ti.API.info("GOT " + JSON.stringify(e));
+                //Ti.API.info("GOT " + JSON.stringify(e));
                 var limit = isTablet ? 80 : android ? 40 : 40;
                 var lt1 = (e.latitude - e.latitudeDelta/2);
                 var lt2 = (parseFloat(e.latitude) + e.latitudeDelta/2);
                 var ln1 = (e.longitude - e.longitudeDelta/2);
                 var ln2 = (parseFloat(e.longitude) + e.longitudeDelta/2);
-                var found_stations =_.filter(full_data.stations, function(station, index, array) {
+                
+                var test_data = Ti.App.Properties.getString('formap', "");
+                test_data = JSON.parse(test_data)
+                
+                Ti.API.info('TEST DATA', JSON.stringify(test_data))
+                
+                var found_stations =_.filter((test_data) ?test_data :full_data.stations, function(station, index, array) {
                     return station && station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
                 });
                 
+                if (test_data) {
+                	return found_stations;
+            	}
+                	
                 if (found_stations.length < limit) return found_stations;
                 if (e.longitudeDelta < 3.8) {
                     var region = _.filter(full_data.areas, function(station, index, array) {
@@ -81,9 +91,9 @@ module.exports = {
                 if (!params)
                     params = {};
                 
-                Ti.API.info("START CALC DIST");
+                //Ti.API.info("START CALC DIST");
                 var currPos = _.clone(Ti.App.currPosition);
-                Ti.API.info(currPos);
+                //Ti.API.info(currPos);
                 
                 full_data.stations.forEach(function(station, index, theArray) {
                     theArray[index].distance = distance(station, currPos);
@@ -124,7 +134,7 @@ module.exports = {
                 }
                 
                 var list = _.sortBy(result, "distance");
-                Ti.API.info('CALC IN ' + (new Date().getTime() - time));
+                //Ti.API.info('CALC IN ' + (new Date().getTime() - time));
                 return list;
             }
         },
@@ -202,7 +212,7 @@ module.exports = {
                 if (region.length <= limit)
                     return region;
                 var result = [];
-                Ti.API.info(region.length);
+                //Ti.API.info(region.length);
                 for (var x = -1; x <= xt; x++) {
                     for (var y = -1; y <= yt; y++) {
                         //tile by tile
@@ -286,7 +296,7 @@ module.exports = {
                 if (region.length <= limit)
                     return region;
                 var result = [];
-                Ti.API.info(region.length);
+                //Ti.API.info(region.length);
                 for (var x = -1; x <= xt; x++) {
                     for (var y = -1; y <= yt; y++) {
                         //tile by tile
@@ -360,21 +370,21 @@ module.exports = {
         var xhr = Ti.Network.createHTTPClient({
             onload : function(e) {
                 var success = false;
-                Ti.API.info('LOADED');
+                //Ti.API.info('LOADED');
                 try {
                     full_data = JSON.parse(e.source.responseText);
-                    Ti.API.info('PARSED');
+                    //Ti.API.info('PARSED');
                     success = true;
                 } catch (e) {
                     //alert(L('error_load_data_from_server'));
                     success = false;
                 }
                 if (success) {
-                    Ti.API.info('SAVE');
+                    //Ti.API.info('SAVE');
                     self.saveCurrentData();
-                    Ti.API.info('SAVED');
+                    //Ti.API.info('SAVED');
                     callback(true);
-                    Ti.API.info('CALLBACHED');
+                    //Ti.API.info('CALLBACHED');
                 }
             },
             onerror : function(e) {
@@ -387,14 +397,14 @@ module.exports = {
     },
     
     saveCurrentData : function() {
-        Ti.API.info(Ti.Filesystem.applicationCacheDirectory + "data.json");
+        //Ti.API.info(Ti.Filesystem.applicationCacheDirectory + "data.json");
         var file = Ti.Filesystem.getFile( Ti.Filesystem.applicationCacheDirectory + "data.json" );
         var str = JSON.stringify(full_data);
         file.write(str);
     },
     readDefaultData : function() {
         var file = Ti.Filesystem.getFile( Ti.Filesystem.resourcesDirectory + "db/data.json" );
-        Ti.API.info(Ti.Filesystem.applicationDirectory + "db/data.json");
+        //Ti.API.info(Ti.Filesystem.applicationDirectory + "db/data.json");
         full_data = JSON.parse(file.read());
         file = null;
     },
@@ -404,7 +414,7 @@ module.exports = {
     	
         var readedV3 = Ti.App.Properties.getBool("readedV3", false);
         if (!readedV3) {
-            Ti.API.info('REFRESH DATA');
+            //Ti.API.info('REFRESH DATA');
             this.readDefaultData();
             this.saveCurrentData();
             Ti.App.Properties.setBool("readedV3", true);
@@ -413,11 +423,11 @@ module.exports = {
         var file = Ti.Filesystem.getFile( Ti.Filesystem.applicationCacheDirectory + "data.json" );
         if (file.exists()) {
             try {
-                Ti.API.info('READ LAST DATA');
+                //Ti.API.info('READ LAST DATA');
                 var txt = file.read().text;
-                Ti.API.info('READ LAST DATA1');
+                //Ti.API.info('READ LAST DATA1');
                 full_data = JSON.parse(txt);
-                Ti.API.info('READ LAST DATA2');
+                //Ti.API.info('READ LAST DATA2');
                 return;
             } catch (e) {
                 alert('Error reading station list. Reinstall application');
@@ -432,19 +442,19 @@ module.exports = {
             onload : function(e) {
                 var success = false;
                 try {
-                    Ti.API.info('LOADED');
+                    //Ti.API.info('LOADED');
                     var status = JSON.parse(e.source.responseText);
                     success = true;
                 } catch (e) {
                     success = false;
                 }
                 if (success) {
-                    Ti.API.info(status);
-                    Ti.API.info(full_data.status);
+                    //Ti.API.info(status);
+                    //Ti.API.info(full_data.status);
                     if (! _.isEqual(status, full_data.status)) {
                         self.requestUpdates(callback);
                     } else {
-                        Ti.API.info('NO CHANgeS');
+                        //Ti.API.info('NO CHANgeS');
                         callback(false, L('no_changes'));
                     }
                     //full_data.status
@@ -465,7 +475,7 @@ module.exports = {
         var s = full_data.status;
         var str = s.station + "/" +s.region + "/" +s.card_seller + "/" + s.wholesaler +"/" + s.fuel +"/" +s.area +"/"+s.service;
         url += str;
-        Ti.API.info(url);
+        //Ti.API.info(url);
         var self = this;
         var xhr = Ti.Network.createHTTPClient({
             onload : function(e) {
@@ -478,11 +488,11 @@ module.exports = {
                     success = false;
                 }
                 if (success) {
-                    Ti.API.info('SAVE');
+                    ///Ti.API.info('SAVE');
                     self.saveCurrentData();
-                    Ti.API.info('SAVED');
+                    ////Ti.API.info('SAVED');
                     callback(true);
-                    Ti.API.info('CALLBACHED');
+                    ///Ti.API.info('CALLBACHED');
                 }
             },
             onerror : function(e) {
@@ -491,7 +501,7 @@ module.exports = {
         });
         xhr.open('GET', url);
         xhr.send();
-        Ti.API.info('REQUESTED');
+        //Ti.API.info('REQUESTED');
         
     },
     getRegionStringList : function(id) {
@@ -522,9 +532,9 @@ module.exports = {
         var file = Ti.Filesystem.getFile( Ti.Filesystem.applicationDataDirectory + "rashod.json" );
         if (file.exists()) {
             try {
-                Ti.API.info('READ LAST DATA');
+                ////Ti.API.info('READ LAST DATA');
                 var txt = file.read().text;
-                Ti.API.info(txt);
+                ///Ti.API.info(txt);
                 return JSON.parse(txt);
             } catch (e) {
                 return this.readDefaultRashodData();
@@ -533,8 +543,8 @@ module.exports = {
         return this.readDefaultRashodData();
     },
     updateRashodRecord : function(rec) {
-        Ti.API.info('UPDATE RECORD ');
-        Ti.API.info(rec);
+        //Ti.API.info('UPDATE RECORD ');
+        ///Ti.API.info(rec);
         var list = this.readRashodData();
         var index = -1;
         var found = _.find(list, function(el, i, array) {
@@ -551,14 +561,14 @@ module.exports = {
         return list;
     },
     addRashodRecord : function(rec) {
-        Ti.API.info('ADD RECORD ');
-        Ti.API.info(rec);
+        //Ti.API.info('ADD RECORD ');
+        ///Ti.API.info(rec);
         var list = this.readRashodData();
-        Ti.API.info(list);
+        ///Ti.API.info(list);
         var mrec = _.max(list, function(el){ return el.id; });
-        Ti.API.info(mrec);
+        ///Ti.API.info(mrec);
         rec.id = list.length == 0 ? 1 : parseInt(mrec.id) + 1;
-        Ti.API.info(rec); 
+        //Ti.API.info(rec); 
         list.push(rec);
         this.saveRashodData(list);
         return list;
@@ -602,7 +612,7 @@ module.exports = {
         });
         xhr.open('GET', url);
         xhr.send();
-        Ti.API.info('REQUESTED');
+        ///Ti.API.info('REQUESTED');
     },
     
     getRegionById : function(id, callback) {
@@ -627,7 +637,7 @@ module.exports = {
         });
         xhr.open('GET', url);
         xhr.send();
-        Ti.API.info('REQUESTED');
+        ///Ti.API.info('REQUESTED');
     },
     
     

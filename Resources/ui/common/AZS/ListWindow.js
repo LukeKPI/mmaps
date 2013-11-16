@@ -229,7 +229,7 @@ function ListWindow(options) {
                 UI.AlertDialog(L('error_disable_geo'));
                 return;
             } else {
-                Ti.API.info('GEO success');
+                //Ti.API.info('GEO success');
                 var currPos = {
                     lat : geo.coords.latitude,
                     lon : geo.coords.longitude
@@ -246,7 +246,7 @@ function ListWindow(options) {
     container.bottomBar = bottomBar;
     var bbIndex = 0;
     bottomBar.addEventListener('changeMode', function(e) {
-        Ti.API.info('MODE CHANGED BOTTOM: ' + e.index);
+        //Ti.API.info('MODE CHANGED BOTTOM: ' + e.index);
 
         if (bbIndex == e.index)
             return;
@@ -291,7 +291,7 @@ function ListWindow(options) {
     //click map from Nearest
 
     self.addEventListener('close', function(e) {
-        Ti.API.info('close ListWindow');
+        ///Ti.API.info('close ListWindow');
         Ti.App.removeEventListener('returnListWindow', self.refreshListWindow);
         //Ti.Geolocation.removeEventListener('location', locationEvent);
     })
@@ -346,7 +346,7 @@ function ListWindow(options) {
         if (!regionsWindow) {
             var RegionsWindow = require('/ui/common/AZS/RegionsWindow');
             regionsWindow = new RegionsWindow(function(regionRec){
-                Ti.API.info(regionRec);
+                ///Ti.API.info(regionRec);
                 selectedRegion = regionRec;
                 invokeAreas();
             });
@@ -368,7 +368,7 @@ function ListWindow(options) {
         if (!areasWindow) {
             var AreasWindow = require('/ui/common/AZS/AreasWindow');
             areasWindow = new AreasWindow( function(areaRec) {
-               Ti.API.info(areaRec);
+               //Ti.API.info(areaRec);
                selectedArea = areaRec;
                filterList(); 
             });
@@ -438,16 +438,16 @@ function ListWindow(options) {
         }
         if (mode != "list")
             return;
-        Ti.API.info('open ListWindow')
+        //Ti.API.info('open ListWindow')
         self.makeDataList();
     });
 
 
 
     self.clickRow = function(e) {
-        Ti.API.info(e);
+        //Ti.API.info(e);
         var item = e.section.getItemAt(e.itemIndex);
-        Ti.API.info(item);
+        //Ti.API.info(item);
         if (item.stationData) {
             var data = item.stationData;
             var item = _.extend(item, {bg: {backgroundImage: "/images/list_item_bg_tap.png"}});
@@ -484,6 +484,8 @@ function ListWindow(options) {
             params = {};
         }
         if (data) {
+        	Ti.API.info('FOR TEST DATA',data.length)
+        	Ti.App.Properties.setString('formap', JSON.stringify(data));
             
             //Ti.API.info(data);
             var items = []; var limit = params.areaId  ? 99999999 : 300;
