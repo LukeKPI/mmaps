@@ -399,6 +399,9 @@ module.exports = {
         file = null;
     },
     readData : function() {
+    	this.readDefaultData();
+    	return;
+    	
         var readedV3 = Ti.App.Properties.getBool("readedV3", false);
         if (!readedV3) {
             Ti.API.info('REFRESH DATA');
