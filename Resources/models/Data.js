@@ -44,16 +44,24 @@ module.exports = {
                 var ln2 = (parseFloat(e.longitude) + e.longitudeDelta/2);
                 
                 var test_data = Ti.App.Properties.getString('formap', "");
-                test_data = JSON.parse(test_data)
+                var useTestData = Ti.App.Properties.getInt('formap_id2');
+                if (test_data) {
+                	test_data = JSON.parse(test_data)
+                }
                 
-                Ti.API.info('TEST DATA', JSON.stringify(test_data))
-                
-                var found_stations =_.filter((test_data) ?test_data :full_data.stations, function(station, index, array) {
+                var found_stations =_.filter((useTestData == 1) ?test_data :full_data.stations, function(station, index, array) {
                     return station && station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
                 });
                 
-                if (test_data) {
+                if (useTestData == 1 && test_data) {
                 	return found_stations;
+            	}
+                if (useTestData == 2) {
+                	var region = _.filter(full_data.regions, function(station, index, array) {
+                		array[index].cluster = true;
+           		        return station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
+	                });
+    	            return region;
             	}
                 	
                 if (found_stations.length < limit) return found_stations;
@@ -79,7 +87,7 @@ module.exports = {
                 
                 var region = _.filter(full_data.regions, function(station, index, array) {
                     array[index].cluster = true;
-                    return false && station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
+                    return station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
                 });
                 return region;
             },
@@ -642,3 +650,4 @@ module.exports = {
     
     
 } 
+

@@ -160,7 +160,15 @@ function MapView(props) {
             }
         }
         var aimage;
+        
+        Ti.API.info(JSON.stringify(item));
+        
         if (item.cluster) {
+        	Ti.API.info('CLUSTERS', item.stations)
+        	nlbl.text = item.stations;
+        }
+        
+        if (false && item.cluster) {
             if (android) {
                 aimage = "/images/map/"+item.stations+".png";
             } else {
@@ -168,7 +176,6 @@ function MapView(props) {
                 if (found) {
                     aimage = found;
                 } else {
-                    nlbl.text = item.stations;
                     aimage = numbergen.toImage(null);
                     if (android) {
                         clusters[item.stations] = aimage.media;

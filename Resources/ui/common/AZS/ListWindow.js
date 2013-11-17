@@ -136,7 +136,7 @@ function ListWindow(options) {
     var header = new UI.WindowHeader({
         has_back : 1,
         title : L('azs'),
-        list_map : true
+        list_map : (options.test_id == 2) ?false :true
     });
     self.add(header);
     self.clickBack = function() {
@@ -316,7 +316,7 @@ function ListWindow(options) {
             mapview.drawRoute(e.destination);
         }
         UI.replaceView(container, mapview.getView(), e.disableAnim);
-        header.listMapIndex(1);
+        (options.test_id == 2) ?null :header.listMapIndex(1);
         if (e.station) {
             mapview.activeAnnotation(e.station, e.destination ? 1 : 0);
         } else {
@@ -335,7 +335,7 @@ function ListWindow(options) {
         UI.replaceView(container, table, false, bottomBar, back);
 
         container.add(bottomBar);
-        header.listMapIndex(0);
+        (options.test_id == 2) ?null :header.listMapIndex(0);
         (options.test_id != 1) ?bottomBar.buttonBarIndex(0) :null;
         bbIndex = 0;
         
@@ -353,7 +353,7 @@ function ListWindow(options) {
         }
 
         UI.replaceView(container, regionsWindow, false, bottomBar, back);
-        header.listMapIndex(0);
+        (options.test_id == 2) ?null :header.listMapIndex(0);
         (options.test_id != 1) ?bottomBar.buttonBarIndex(1) :null;
         bbIndex = 1;
 
@@ -375,7 +375,7 @@ function ListWindow(options) {
         }
         areasWindow.addData(selectedRegion);
         UI.replaceView(container, areasWindow, false, bottomBar, back);
-        header.listMapIndex(0);
+        (options.test_id == 2) ?null :header.listMapIndex(0);
         (options.test_id != 1) ?bottomBar.buttonBarIndex(1):null;
         bbIndex = 1;
     }
@@ -485,7 +485,13 @@ function ListWindow(options) {
         }
         if (data) {
         	Ti.API.info('FOR TEST DATA',data.length)
-        	Ti.App.Properties.setString('formap', JSON.stringify(data));
+        	if (options.test_id == 1 || options.test_id == 2) {
+        		Ti.App.Properties.setString('formap', JSON.stringify(data));
+        		Ti.App.Properties.setInt('formap_id2', options.test_id);
+        	} else {
+        		Ti.App.Properties.setString('formap', '');
+        		Ti.App.Properties.setInt('formap_id2', null);
+        	}
             
             //Ti.API.info(data);
             var items = []; var limit = params.areaId  ? 99999999 : 300;
