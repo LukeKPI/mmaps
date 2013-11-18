@@ -164,7 +164,6 @@ function MapView(props) {
         Ti.API.info(JSON.stringify(item));
         
         if (item.cluster) {
-        	Ti.API.info('CLUSTERS', item.stations)
         	nlbl.text = item.stations;
         }
         

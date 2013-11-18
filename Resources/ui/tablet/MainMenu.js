@@ -74,7 +74,7 @@ function MainMenu() {
 
     var btnCounter = 0;
 
-    var MenuItem = function(textId, text2Id, openWin) {
+    var MenuItem = function(textId, text2Id, openWin, test_id, map) {
         //var rowHeight = Math.floor((ph - headerHeight - runningStringHeight) / 4);
         //var top = (rowHeight - 30) / 2;
 
@@ -137,7 +137,7 @@ function MainMenu() {
             menuItem.backgroundImage = '/images/i1_0/menu_row_hover.png';
             menuItem.children[2].children[0].color = '#ecf1b4';
             menuItem.children[2].children[1].color = '#ecf1b4';
-            Ti.App.fireEvent(openWin);
+            Ti.App.fireEvent(openWin, {test_id:test_id, refresh : map});
 
             setTimeout(function() {
                 menuItem.backgroundImage = '/images/i1_0/menu_row.png';
@@ -172,10 +172,10 @@ function MainMenu() {
     self.add(headerView);
     self.add(footerView);
 
-    var miAZS = new MenuItem(L('mi_azs'), L('mi_azs_hint'), 'openNearestWindow');
-    var miKart = new MenuItem(L('mi_kart'), L('mi_kart_hint'), 'openKartListWindow');
-    var miOpt = new MenuItem(L('mi_opt'), L('mi_opt_hint'), 'openOptListWindow');
-    var miRash = new MenuItem(L('mi_rashod'), L('mi_rashod_hint'), 'openRozrahWindow');
+    var miAZS = new MenuItem(L('mi_azs'), L('mi_azs_hint'), 'openListWindow', 2, true);
+    var miKart = new MenuItem(L('mi_kart'), L('mi_kart_hint'), 'openListWindow', 3, true);
+    var miOpt = new MenuItem(L('mi_opt'), L('mi_opt_hint'), 'openListWindow', 1);
+    var miRash = new MenuItem(L('mi_rashod'), L('mi_rashod_hint'), 'openListWindow', 4);
     table.add(miAZS);
     table.add(miKart);
     table.add(miOpt);

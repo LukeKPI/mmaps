@@ -87,7 +87,7 @@ module.exports = {
                 
                 var region = _.filter(full_data.regions, function(station, index, array) {
                     array[index].cluster = true;
-                    return station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
+                    return false && station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
                 });
                 return region;
             },

@@ -840,8 +840,8 @@ function MapNavigation(m) {
     var self = Ti.UI.createView({
         //left: 0,
         layout : 'horizontal',
-        top : 6,
-        bottom : 0,
+        //top : 6,
+        bottom : 6,
         width : Ti.UI.SIZE,
         horizontalWrap: false,
         height : btnsHeight
