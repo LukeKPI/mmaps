@@ -45,21 +45,24 @@ module.exports = {
                 
                 var test_data = Ti.App.Properties.getString('formap', "");
                 var useTestData = Ti.App.Properties.getInt('formap_id2');
+                
+                Ti.API.info('TEST_DATA', useTestData)
+                
                 if (test_data) {
                 	test_data = JSON.parse(test_data)
                 }
                 
-                var found_stations =_.filter((useTestData == 1) ?test_data :full_data.stations, function(station, index, array) {
-                    return station && station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
+                var found_stations =_.filter((useTestData == 2) ?test_data :full_data.stations, function(station, index, array) {
+                    return station;
                 });
                 
-                if (useTestData == 1 && test_data) {
+                if (useTestData == 2 && test_data) {
                 	return found_stations;
             	}
-                if (useTestData == 2) {
+                if (useTestData == 1) {
                 	var region = _.filter(full_data.regions, function(station, index, array) {
                 		array[index].cluster = true;
-           		        return station &&  station.lon && station.lat && station.lat >= lt1 && station.lat <= lt2 && station.lon >= ln1 && station.lon <= ln2;
+           		        return (station.id != -1) ?station : false;
 	                });
     	            return region;
             	}
@@ -133,7 +136,7 @@ module.exports = {
                 
                 //filter data
                 Ti.API.info('TEST_ID')
-                if (params.test_id == 1) {
+                if (params.test_id == 2) {
 	                var maxNumberOfData = 30;
 	                var counter = 1;
 	                result = _.filter(result, function(station, iterator) {
@@ -156,7 +159,7 @@ module.exports = {
             },
             getList : function(callback) {
                 var result = full_data.regions.filter(function(rec) {
-                    return rec.id > 0
+                    return rec.id > 0 && (rec.id == 9 || rec.id == 11 || rec.id == 16) 
                 });
                 return _.sortBy(result, "name");
 

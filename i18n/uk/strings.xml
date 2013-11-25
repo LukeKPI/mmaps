@@ -18,22 +18,22 @@
 	<string name="no_data">Маршрут не побудований</string>
     <string name="can_not_get_route">Не вдалося побудувати маршрут</string>
 	
-	<string name="mi_azs">Мережа АЗС</string>
-	<string name="mi_azs_tab">Мережа АЗС</string>
-	<string name="mi_azs_hint">Наймасштабніша мережа в Україні</string>
+	<string name="mi_azs">Карта</string>
+	<string name="mi_azs_tab">Карта</string>
+	<string name="mi_azs_hint">Карта з мітками</string>
 	
-	<string name="mi_kart">Паливні карти</string>
-	<string name="mi_kart_tab">Паливні карти</string>
-	<string name="mi_kart_hint">Економія, безпека та зручність</string>
+	<string name="mi_kart">Карта+Паспорт</string>
+	<string name="mi_kart_tab">Карта+Паспорт</string>
+	<string name="mi_kart_hint">Карта з мітками, що мають паспорт</string>
 	
-	<string name="mi_opt">Оптові продавці</string>
-	<string name="mi_opt_hint">Оптовим замовникам</string>
+	<string name="mi_opt">Список (Альтернатива)</string>
+	<string name="mi_opt_hint">Список міток</string>
 	
-    <string name="mi_opt_tab">Опт</string>
+    <string name="mi_opt_tab">Список</string>
 	
 
-	<string name="mi_rashod">Розрахунок витрат</string>
-	<string name="mi_rashod_hint">Не вірь рекламі - рахуй сам</string>
+	<string name="mi_rashod">Список (Стандарт)</string>
+	<string name="mi_rashod_hint">Список міток</string>
 
 
 	<string name="nearest_title">Мережа АЗС</string>
@@ -102,7 +102,18 @@
 	<string name="last_update">Оновлено</string>
 	<string name="no_changes">Вже оновлено</string>
 	<string name="updated">Оновлення завершено успішно</string>
-	<string name="azs">Мережа АЗС</string>
+	
+	
+	
+	
+	
+	<string name="azs">Заголовок</string>
+	
+	
+	
+	
+	
+	
 	<string name="nearest_azs">Найближча АЗС</string>
     <string name="no_phone">Телефон не вказаний</string>
     <string name="phone">Бажаєте зателефонувати?</string>

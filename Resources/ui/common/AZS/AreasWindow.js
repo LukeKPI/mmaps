@@ -23,6 +23,8 @@ function makeTableData(data) {
             area : {region_id:data[0].region_id, all:1},
         }];
 
+	if (data[0].region_id != 9) return list;
+		
     for (var i = 0; i < data.length; i++) {
         var row = {
             hasChild : true,

@@ -136,7 +136,7 @@ function ListWindow(options) {
     var header = new UI.WindowHeader({
         has_back : 1,
         title : L('azs'),
-        list_map : (options.test_id == 2 || options.test_id == 3) ?false :true
+        list_map : (options.test_id == 1 || options.test_id == 2) ?false :true
     });
     self.add(header);
     self.clickBack = function() {
@@ -145,7 +145,7 @@ function ListWindow(options) {
         } else if (mode == "list" ) {
             Ti.App.fireEvent("closeListAZSWindow");
         } else if (mode == "map") {
-            (options.test_id == 2 || options.test_id == 3) ?Ti.App.fireEvent("closeListAZSWindow") :invokeList(1);
+            (options.test_id == 1 || options.test_id == 2) ?Ti.App.fireEvent("closeListAZSWindow") :invokeList(1);
         } else if (mode == "regions") {
             selectedRegion = null;
             selectedArea = null;
@@ -215,8 +215,8 @@ function ListWindow(options) {
     //BUTTON BARS
 
     var bottomBar = new UI.WindowFooter({
-        button_bar : (options.test_id != 1) ?[L('list_dist'), L('list_regions')] :null,
-        right_button: (options.test_id != 1) ?true : false,
+        button_bar : (options.test_id != 3) ?[L('list_dist'), L('list_regions')] :null,
+        right_button: (options.test_id != 3) ?true : false,
     });
     bottomBar.addEventListener('rightBtnTap', function(e) {
         if (!Ti.Geolocation.locationServicesEnabled) {
@@ -316,7 +316,7 @@ function ListWindow(options) {
             mapview.drawRoute(e.destination);
         }
         UI.replaceView(container, mapview.getView(), e.disableAnim);
-        (options.test_id == 2 || options.test_id == 3) ?null :header.listMapIndex(1);
+        (options.test_id == 1 || options.test_id == 2) ?null :header.listMapIndex(1);
         if (e.station) {
             mapview.activeAnnotation(e.station, e.destination ? 1 : 0);
         } else {
@@ -335,8 +335,8 @@ function ListWindow(options) {
         UI.replaceView(container, table, false, bottomBar, back);
 
         container.add(bottomBar);
-        (options.test_id == 2 || options.test_id == 3) ?null :header.listMapIndex(0);
-        (options.test_id != 1) ?bottomBar.buttonBarIndex(0) :null;
+        (options.test_id == 1 || options.test_id == 2) ?null :header.listMapIndex(0);
+        (options.test_id != 3) ?bottomBar.buttonBarIndex(0) :null;
         bbIndex = 0;
         
     }
@@ -353,8 +353,8 @@ function ListWindow(options) {
         }
 
         UI.replaceView(container, regionsWindow, false, bottomBar, back);
-        (options.test_id == 2 || options.test_id == 3) ?null :header.listMapIndex(0);
-        (options.test_id != 1) ?bottomBar.buttonBarIndex(1) :null;
+        (options.test_id == 1 || options.test_id == 2) ?null :header.listMapIndex(0);
+        (options.test_id != 3) ?bottomBar.buttonBarIndex(1) :null;
         bbIndex = 1;
 
     }
@@ -375,8 +375,8 @@ function ListWindow(options) {
         }
         areasWindow.addData(selectedRegion);
         UI.replaceView(container, areasWindow, false, bottomBar, back);
-        (options.test_id == 2 || options.test_id == 3) ?null :header.listMapIndex(0);
-        (options.test_id != 1) ?bottomBar.buttonBarIndex(1):null;
+        (options.test_id == 1 || options.test_id == 2) ?null :header.listMapIndex(0);
+        (options.test_id != 3) ?bottomBar.buttonBarIndex(1):null;
         bbIndex = 1;
     }
     
@@ -466,7 +466,7 @@ function ListWindow(options) {
         table.setSections([Ti.UI.createListSection({items:[{template: "loading"}]})]);
         
         var params = {};
-        params.test_id = options.test_id
+        params.test_id = options.test_id;
         if (selectedFuel) {
             params.fuels = selectedFuel;
         }
@@ -484,7 +484,7 @@ function ListWindow(options) {
             params = {};
         }
         if (data) {
-        	Ti.API.info('FOR TEST DATA',data.length)
+        	Ti.API.info('SET TEST DATA',options.test_id)
         	if (options.test_id == 1 || options.test_id == 2 || options.test_id == 3) {
         		Ti.App.Properties.setString('formap', JSON.stringify(data));
         		Ti.App.Properties.setInt('formap_id2', options.test_id);
@@ -499,7 +499,7 @@ function ListWindow(options) {
             //var first = 0;
             for (var i = 0; i < data.length && i < limit; ++i) {
                 var station = data[i];
-                items.push({ addr: { text: station.addr }, brand: { text: station.brand }, distance:{text: station.distance.toFixed(1) + ' км'}, stationData: _.clone(station) });
+                items.push({ addr: { text: station.addr }, brand: { text: 'Мітка #' +station.id }, distance:{text: station.distance.toFixed(1) + ' км'}, stationData: _.clone(station) });
             }
             //new_section.setItems(items);
             var new_section = Ti.UI.createListSection({items:items});

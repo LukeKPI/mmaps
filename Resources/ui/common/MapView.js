@@ -190,7 +190,7 @@ function MapView(props) {
         var opt = {
             latitude : item.lat,
             longitude : item.lon,
-            title : item.cluster ? item.name : mode == "card_seller" ? item.addr : item.brand,
+            title : item.cluster ? item.name : mode == "card_seller" ? item.addr : 'Мітка #' +item.id,
             subtitle : mode == "card_seller" ? item.phone : item.addr,
             id : item.id,
             data : item,

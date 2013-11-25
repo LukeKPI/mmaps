@@ -38,9 +38,9 @@ function MainMenu() {
     });
 
     var table = Ti.UI.createView({
-        top : headerHeight,
+        //top : headerHeight,
         backgroundColor : 'silver',
-        bottom : runningStringHeight,
+        //bottom : runningStringHeight,
         layout : "vertical",
     });
 
@@ -91,7 +91,7 @@ function MainMenu() {
         }));
 
         var icoNum = btnCounter + 1;
-        var icoPath = '/images/i1_0/icons/menu_row' + icoNum + '_ico.png';
+        var icoPath = '/images/i1_0/icons/row.png';
 
         menuItem.add(Ti.UI.createView({
             left : 11,
@@ -149,6 +149,14 @@ function MainMenu() {
             menuItem.backgroundImage = '/images/i1_0/menu_row_hover.png';
             menuItem.children[2].children[0].color = '#ecf1b4';
             menuItem.children[2].children[1].color = '#ecf1b4';
+            
+            Ti.API.info('SET TEST ID FROM MENU', test_id)
+        	if (test_id) {
+        		Ti.App.Properties.setInt('formap_id2', test_id);
+        	} else {
+        		Ti.App.Properties.setInt('formap_id2', null);
+        	}
+            
             Ti.App.fireEvent(openWin, {test_id:test_id, refresh : map});
 
             setTimeout(function() {
@@ -165,13 +173,13 @@ function MainMenu() {
         return menuItem;
     };
 
-    self.add(headerView);
+    //self.add(headerView);
     self.add(table);
-    self.add(footerView);
+    //self.add(footerView);
 
-    var miAZS = new MenuItem(L('mi_azs'), L('mi_azs_hint'), 'openListWindow', 2, true);
-    var miKart = new MenuItem(L('mi_kart'), L('mi_kart_hint'), 'openListWindow', 3, true);
-    var miOpt = new MenuItem(L('mi_opt'), L('mi_opt_hint'), 'openListWindow', 1);
+    var miAZS = new MenuItem(L('mi_azs'), L('mi_azs_hint'), 'openListWindow', 1, true);
+    var miKart = new MenuItem(L('mi_kart'), L('mi_kart_hint'), 'openListWindow', 2, true);
+    var miOpt = new MenuItem(L('mi_opt'), L('mi_opt_hint'), 'openListWindow', 2);
     var miRash = new MenuItem(L('mi_rashod'), L('mi_rashod_hint'), 'openListWindow', 4);
     table.add(miAZS);
     table.add(miKart);
@@ -261,13 +269,13 @@ function MainMenu() {
                 Ti.App.nearestOpt = list[0];
             }
 
-            updateNearest();
+            //updateNearest();
 
         });
-        setTimeout(updateGeoPosition, 1000*60*5);
+        //setTimeout(updateGeoPosition, 1000*60*5);
     }        
 
-    self.addEventListener("open", updateGeoPosition);
+    //self.addEventListener("open", updateGeoPosition);
     
     
     Ti.App.addEventListener("pause", function(){
@@ -277,7 +285,7 @@ function MainMenu() {
 
     Ti.App.addEventListener("resume", function(){
         Ti.API.info('UPDATE GEO POSITION');
-        updateGeoPosition();
+        //updateGeoPosition();
     });
      
     return self;
