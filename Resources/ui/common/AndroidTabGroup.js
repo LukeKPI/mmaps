@@ -22,10 +22,10 @@ function AndroidTabGroup(props) {
 		layout : "horizontal",
 		scrollType : 'horizontal',
 		horizontalWrap : false,
-		height : 54,
+		height : 0,
 	});
 	var bottomLine = Ti.UI.createView({
-		top : 54,
+		top : 0,
 		height : 2,
 		backgroundColor : "#f7be10",
 	});
@@ -83,7 +83,7 @@ function AndroidTabGroup(props) {
 		} else {
 		    tab.window = new tab.windowClass();
 			tab.window.navGroup = tab;
-			tab.window.top = index == 0 ? 0 : 56;
+			tab.window.top = index == 0 ? 0 : 0;
 			tab.window.zIndex = 100;
 			tab.window.open();
 			tab.window.alreadyOpened = true;
@@ -210,7 +210,7 @@ function AndroidTab(props) {
             }
     };
 	self.open = function(w) {
-		w.top = 56;
+		w.top = 0;
 		openedWindows.push(w);
 		w.addEventListener("close", closeHandler);
 		w.zIndex = openedWindows.length +10;

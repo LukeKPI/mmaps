@@ -124,7 +124,7 @@ function SingleAZSWindow(e) {
         sections: [section],
         templates: { 'template': rowTemplate},
         defaultItemTemplate: 'template',
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
         rowHeight: 66,
         top : UI.size.header,
         bottom : UI.size.footer,

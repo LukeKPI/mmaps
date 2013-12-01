@@ -44,15 +44,9 @@
         var handleLocation = function(geo) {
             if (geo.success) {
                 var data = {
-                    lat : 
-                    geo.coords.latitude,
-                    lon : 
-                    geo.coords.longitude
-                }
-                Ti.API.info('GEO Latitude = ' + data.lat + '/' + geo.coords.latitude);
-                Ti.API.info('GEO Longitude = ' + data.lon);
-                Ti.App.Properties.setString('currPosition', JSON.stringify(data));
-                Ti.App.currPosition = data;
+                    lat : (geo.coords) ?geo.coords.latitude :null,
+                    lon : (geo.coords) ?geo.coords.longitude :null
+                };
             }
         };
         var addHandler = function() {
@@ -81,7 +75,7 @@
                 message: L('error_disable_geo'),
                 ok: 'OK',
                 title: 'Geolocation'
-            }).show()
+            }).show();
         }        
         
     } else {
@@ -95,7 +89,7 @@
             var tab = Ti.UI.createTab(d); 
             tab.window.navGroup = tab;
             return tab;
-        }
+        };
     }
 
     var MainWindow = isTablet ? require('/ui/tablet/MainMenu') : require('/ui/common/MainMenu');
@@ -103,6 +97,7 @@
     var root = TabGroup({
         navBarHidden : true,
     });
+    //root.tabBarVisible = false;
     var hTab = Tab({
         title : "Главная",
         icon: "/images/tabs/home.png",
