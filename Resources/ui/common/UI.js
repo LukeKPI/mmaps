@@ -853,6 +853,14 @@ function MapNavigation(m) {
         backgroundImage : isTablet ? '/images/passport/map_tablet.png' : '/images/passport/map.png',
     });
     btnMap.addEventListener('singletap', function(e) {
+
+  var dialog = Ti.UI.createAlertDialog({
+    message: L('can_not_get_route'),
+    ok: 'ОК',
+    title: 'Помилка!'
+  }).show();
+
+return;
         if (mode == "azs") {
 
             Ti.App.fireEvent('returnListWindow', {
@@ -886,6 +894,7 @@ function MapNavigation(m) {
         backgroundImage : isTablet ? '/images/passport/route_tablet.png' : '/images/passport/route.png',
     });
     btnRoute.addEventListener('singletap', function(e) {
+    	
         var drawData;
 
         drawData = {

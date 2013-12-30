@@ -115,32 +115,8 @@
     });
     if (!android) azsTab.window.navBarHidden = true;
 
-    var KartListWindow = require('/ui/common/Kart/KartListWindow');
-    var kartTab = new Tab({
-        title : L("mi_kart_tab"),
-        icon: "/images/tabs/seller.png",
-        windowClass : KartListWindow
-    });
-
-    var OptListWindow = require('/ui/common/Opt/OptListWindow');
-    var optTab = new Tab({
-        title : L("mi_opt_tab"),
-        icon: "/images/tabs/opt.png",
-        windowClass : OptListWindow
-    });
-
-    var StatisticWindow = require('/ui/common/Rozrah/StatisticWindow')
-    var statTab = new Tab({
-        title : L("rozrah_menu_title"),
-        icon: "/images/tabs/ras.png",
-        windowClass : StatisticWindow
-    });
-
     root.addTab(hTab);
     root.addTab(azsTab);
-    root.addTab(kartTab);
-    root.addTab(optTab);
-    root.addTab(statTab);
     root.addEventListener("open", function() {
         root.setActiveTab(0);
     });
@@ -242,59 +218,6 @@
             closeWindow(singleAZSWindow);
             singleAZSWindow = null;
         }
-    });
-
-    //2ND MENU EVENTS
-
-    Ti.App.addEventListener('openKartListWindow', function(e) {
-        root.setActiveTab(2);
-    });
-
-    var singleKartWindow = null;
-    var SingleKartWindow = require('/ui/common/Kart/SingleKartWindow');
-    function openSingleKart(e) {
-        if (singleKartWindow != null) {
-            singleKartWindow.close();
-            singleKartWindow = null;
-        }
-        singleKartWindow = new SingleKartWindow(e);
-        openWindow(singleKartWindow);
-    }    
-    Ti.App.addEventListener('openSingleKartWindow', openSingleKart);
-
-    function closeSingleCart(e) {
-        closeWindow(singleKartWindow);
-        singleKartWindow = null;
-    }
-    Ti.App.addEventListener('closeSingleKartWindow', closeSingleCart);
-    //3RD MENU EVENTS
-    Ti.App.addEventListener('openOptListWindow', function(e) {
-        root.setActiveTab(3);
-    });
-
-    var singleOptWindow;
-    Ti.App.addEventListener('openSingleOptWindow', function(e) {
-        if (singleOptWindow != null) {
-            //openWindow(singleOptWindow);
-            singleOptWindow.close();
-            singleOptWindow = null;
-            //return;
-        }
-
-        var SingleOptWindow = require('/ui/common/Opt/SingleOptWindow');
-
-        singleOptWindow = new SingleOptWindow(e);
-        openWindow(singleOptWindow);
-    });
-
-    Ti.App.addEventListener('closeSingleOptWindow', function(e) {
-        closeWindow(singleOptWindow);
-        singleOptWindow = null;
-    });
-
-    var statisticWindow;
-    Ti.App.addEventListener('openRozrahWindow', function(e) {
-        root.setActiveTab(4);
     });
 
     var selectWindow;

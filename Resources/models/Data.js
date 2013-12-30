@@ -94,7 +94,12 @@ module.exports = {
                 });
                 return region;
             },
-
+            findOneById : function(id) {
+                var result = _.find(full_data.stations, function(rec) {
+                    return rec.id == id
+                });
+                return result;
+            },
             getList : function(params) {
                 //full_data.stations
                 //

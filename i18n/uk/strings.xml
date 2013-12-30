@@ -14,7 +14,7 @@
 	<string name="no_history">Немає збережених даних</string>
 	<string name="way">Маршрут</string>
 	<string name="text">Текст</string>
-	<string name="connection_problem">З'єднаня з інтернетом відсутнеє</string>
+	<string name="connection_problem">З'єднаня з інтернетом відсутнє</string>
 	<string name="no_data">Маршрут не побудований</string>
     <string name="can_not_get_route">Не вдалося побудувати маршрут</string>
 	
